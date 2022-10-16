@@ -1,0 +1,13 @@
+<div *ngFor="let user of posts" class="sidebar">
+<div class="chatbox">
+    <span>
+
+        <h1>{{user.name}}</h1>
+        <h2>{{user.username}}</h2>
+
+    </span>
+    <h3 (click)="submit()">{{user.lastactive}}</h3>
+ 
+    
+</div>
+</div>

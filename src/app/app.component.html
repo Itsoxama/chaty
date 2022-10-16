@@ -1,0 +1,424 @@
+<div class="bigparent">
+    <div *ngIf="login===0" class="parent">
+
+        <div [ngClass]="[warn]">
+            <div class="subwarn">
+                <h1>If you delete this account all of your chats and data will be deleted.</h1>
+                <div class="buttons">
+                    
+                    <button (click)="hidewarn()" class="cancel">Cancel</button>
+                    <button (click)="deleteusr()" class="delete">Delete</button>
+                </div>
+
+            </div>
+        </div>
+        <div [ngClass]="[calling]">
+            <div class="pikupcall">
+                Usama is Calling
+                <div class="redcall">
+                    UK
+                </div>
+            </div>
+            <div>
+                <div class="callcircle" (click)="connect()">
+
+                    <i class="bi callicon2 bi-telephone-fill"></i>
+                </div>
+
+
+                <div class="callcircle2" (click)="closeconm()">
+
+                    <i class="bi callicon3 bi-x"></i>
+                </div>
+
+
+
+            </div>
+
+
+
+        </div>
+        <div [ngClass]="[deskx]">
+            <h1>participants</h1>
+            <div class="addusers" style="height: 90%;">
+
+
+                <div class="userline" *ngFor="let userax of parts">
+                    {{userax.username}}
+                    <div></div>
+
+                </div>
+
+                <div class="userline">
+                    {{nhj}}
+                    <div></div>
+
+                </div>
+            </div>
+
+            <button (click)="hidedesk()">Ok</button>
+        </div>
+
+
+        <div [ngClass]="[editmsg2]">
+            <h1>Update message</h1>
+
+
+            <textarea spellcheck="false" class="messagf" (change)="newmsg($event)">
+                </textarea>
+
+            <button (click)="hidedeskaa()">update</button>
+        </div>
+        <div [ngClass]="[deskxn]">
+            <h1>Report this room</h1>
+
+
+            <textarea spellcheck="false" class="messagf" (change)="deskspacename($event)">
+                </textarea>
+
+            <button (click)="hidedeska()">Send</button>
+        </div>
+        <div [ngClass]="[desk]">
+
+            <h6 class="asww" (click)="closereporat()">X</h6>
+            <h1>Dexspace Name</h1>
+            <input spellcheck="false" (change)="deskspacename($event)" placeholder="Name">
+
+            <h3 [ngClass]="[deskxh]">Name field is required!</h3>
+            <h2>Add Users</h2>
+            <div class="addusers">
+                <div *ngFor="let user of posts">
+                    <div class="userline">
+                        {{user.name}}
+                        <input spellcheck="false" type="checkbox" (click)="addusers(user.name,user._id)">
+                    </div>
+                </div>
+            </div>
+
+            <button (click)="createdesk()">Create</button>
+        </div>
+        
+        <div [ngClass]="[deskus]">
+
+            <h6 class="asww"(click)="closereporatx()" >X</h6>
+            <h1>Send Invitation</h1>
+            <input type="text" placeholder="Search"  (change)="searchvalchange2($event)">
+            <h2>Users</h2>
+            <div class="addusers">
+                
+                <div *ngFor="let user of postsx">
+                    <div class="userline" *ngIf="searchtxt2.length!=0&&searchtxt2===user.username">
+                        {{user.name}}
+                        <input spellcheck="false" type="checkbox" (click)="setinvite(user.name,user._id)">
+                    </div>
+                </div>
+            </div>
+
+            <button (click)="sendinvite()" >Send</button>
+        </div>
+        <div [ngClass]="[deskus2]">
+
+            <h6 class="asww"(click)="hidein()" >X</h6>
+            <h1>Invitations</h1>
+            <h2>Users</h2>
+            <div class="addusers">
+                <div *ngFor="let user of invitelists2">
+                    <div class="userline">
+                        {{user.name}}
+                  <div class="btns">
+                    <button  (click)="accept(user.id)" class="accept">Accept</button>
+                    <button (click)="deleteinvite(user.id)" class="del">Delete</button>
+                  </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div [ngClass]="[callvideo]">
+
+            <div class="video-grid">
+                <span class="callcirclex endcall" (click)="closeconm()">
+
+                    <i class="bi callicon3 bi-x"></i>
+                </span>
+                <div *ngFor="let video of videos">
+                    <video [srcObject]="video.srcObject" (loadedmetadata)="onLoadedMetadata($event)"
+                        [muted]="video.muted">
+                    </video>
+                </div>
+            </div>
+        </div>
+
+        <div [ngClass]="[side]">
+            <div class="desk">
+                <div (click)="sidechange()" class="sidebtn">
+                    <h1>Menu</h1>
+                </div>
+                <div class="deskspace">
+                    <h1>Chats And Dexspaces</h1>
+
+                </div>
+
+                <div class="deskbtn">
+                    <button class="btn1" (click)="showe()">+ Create New Chat</button>
+
+                    <button class="btn2" (click)="showdeskmenu()">+ Create Dexspace</button>
+                </div>
+
+            </div>
+            <div class="search">
+                <i class="bi bi-search"></i>
+                <input spellcheck="false" (change)="searchvalchange($event)" placeholder="Search" spellcheck="false" />
+
+            </div>
+            <div class="chats">
+                <div class="sidebar">
+                    <h1>Chats <button (click)="showin()" class="btn2">Invitations</button></h1>
+                </div>
+                <div *ngFor="let user of posts" class="sidebar">
+
+
+                    <div class="chatbox" *ngIf="searchtxt.length!=0&&searchtxt===user.name"
+                        (click)="getmsg(user._id,user.name,user.lastactive)">
+                        <span>
+
+                            <h1>{{user.name}}</h1>
+
+                        </span>
+                        <h3>{{user.lastactive}}</h3>
+
+
+                    </div>
+
+                    <div class="chatbox" *ngIf="searchtxt.length===0&&user._id!==usera"
+                        (click)="getmsg(user._id,user.name,user.lastactive)">
+                        <span>
+
+                            <h1>{{user.name}}</h1>
+
+                        </span>
+                        <h3>{{user.lastactive}}</h3>
+
+
+                    </div>
+                </div>
+                <div class="sidebar">
+                    <h1>Dexspaces</h1>
+                </div>
+
+                <div *ngFor="let userx of grouplist" class="sidebar">
+                    <div class="chatbox" (click)="setroom(userx._id)">
+                        <span>
+
+                            <h1>{{userx.name}}</h1>
+
+                        </span>
+
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="column">
+            <div class="chat-box">
+                <div class="header">
+                    <div class="headername">
+                        <h1>{{currentroom.name}}</h1>
+                        <h2>{{currentroom.participants}}</h2>
+
+                    </div>
+                    <div class="call">
+
+                        <div class="options" (click)="create()">
+
+                            <i class="bi callicon bi-camera-video-fill"></i>
+                        </div>
+
+                        <div class="options" (click)="call()">
+
+                            <i class="bi callicon bi-telephone-fill"></i>
+                        </div>
+
+
+                        <div class="options" (click)="report()">
+
+                            <i class="bi threedots three2 bi-three-dots-vertical"></i>
+
+                        </div>
+                        <div [ngClass]="[reportmenu]">
+                            <h2 (click)="closereport()">X</h2>
+                            <h1 (click)="showwarn()">Delete Account</h1>
+                            <h1 (click)="showdeskmenu2()">Participants</h1>
+
+                            <h1 (click)="logout()">Logout</h1>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="messages" style="overflow: scroll;" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+                    <div *ngFor="let msg of messages">
+                        <div *ngIf="user===msg.senderid" class="parentcircle">
+                            <div *ngIf="msg.class==='dltmsg'" class="dltmsg">
+                                <h3 (click)="deletemsg(msg._id)"> Delete</h3>
+                                <h3  *ngIf="msg.message.substring(4,9)!=='xrcfd'" (click)="editmsg(msg._id)">Edit</h3>
+
+                            </div>
+                            <i class="bi threedots bi-three-dots" (click)="changeclass(msg._id)"></i>
+                            <div *ngIf="user===msg.senderid" class="msgchat2">
+
+                                <h1 *ngIf="msg.message.substring(0,18)===video">
+                                    {{msg.message.substring(0,18)}}
+                                    <button (click)="joinmeeting(msg.message.split('tarted'))">JOIN</button>
+                                </h1>
+                                <h1 *ngIf="msg.message.substring(0,9)===code">
+
+                                    <span class="download2" (click)="downloadimage(msg.message)"><i
+                                            class="bi downarrow2 bi-arrow-down-short"></i>
+                                    </span>
+                                    <i class="bi fileas bi-file-earmark-fill"></i>
+
+                                    File
+
+
+                                </h1>
+                                <h1 *ngIf="msg.message.substring(0,18)!==video&&msg.message.substring(0,9)!==code">
+                                    {{msg.message}}
+                                </h1>
+
+                            </div>
+                            <div *ngIf="user===msg.senderid" class="circleuser">
+                                U
+                            </div>
+
+                        </div>
+                        <div *ngIf="user!==msg.senderid" class="parentcircle2">
+                            <div *ngIf="user!==msg.senderid" class="circleuser">
+                                K
+                            </div>
+                            <div *ngIf="user!==msg.senderid" class="msgchat">
+
+
+                                <h1 *ngIf="msg.message.substring(0,18)===video">
+                                    {{msg.message.substring(0,18)}}
+
+                                    <button (click)="joinmeeting(msg.message.split('tarted'))">JOIN</button>
+                                </h1>
+                                <h1 *ngIf="msg.message.substring(0,9)===code">
+                                    File
+
+                                    <i class="bi fileas2 bi-file-earmark-fill"></i>
+                                    <span class="download" (click)="downloadimage(msg.message)"><i
+                                            class="bi downarrow bi-arrow-down-short"></i>
+                                    </span>
+                                </h1>
+
+                                <h1 *ngIf="msg.message.substring(0,18)!==video&&msg.message.substring(0,9)!==code">
+                                    {{msg.message}}
+                                </h1>
+                            </div>
+                            <i class="bi threedots bi-three-dots" (click)="changeclass(msg._id)"></i>
+                            <div *ngIf="msg.class==='dltmsg'" class="dltmsg">
+                                <h3 (click)="deletemsg(msg._id)"> Delete</h3>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                    <span [ngClass]="[msgchat]">
+                        Uploading File...
+
+                    </span>
+
+                </div>
+                <div [ngClass]="[showfilex]">
+                    
+                    <i class="bi fileas bi-file-earmark-fill"></i>
+                    <h1>{{filename}}</h1>
+                    
+                    <h3  (click)="hidefile()" >X</h3>
+                </div>
+                <div class="send">
+
+                    <input type="file" class="inputfile" (change)="uploadfile($event)">
+                    <div [ngClass]="[addbtn2]">
+                        <i class="bi bi-plus"></i>
+
+                        <div [ngClass]="[addbtn3]" (click)="submit2()">
+
+                            <i class="bi bi-film"></i>
+
+
+
+
+                        </div>
+                        <div [ngClass]="[addbtn4]" (click)="submit2()">
+
+
+                            <i class="bi bi-image"></i>
+
+
+                        </div>
+                        <div [ngClass]="[addbtn5]" (click)="submit2()">
+
+                            <i class="bi bi-file-earmark"></i>
+
+
+
+                        </div>
+
+
+
+
+                    </div>
+                    <input spellcheck="false" (change)="valuechange($event)" value="{{message}}"
+                        placeholder="Type a message here" />
+                    <div class="sendbtn" (click)="refresh()">
+                        <i class="bi bi-send-fill"></i>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+
+    </div>
+    <div *ngIf="login===2" class="regform">
+        <h1>Signup</h1>
+        <h2>Name</h2>
+        <input spellcheck="false" (change)="namevalue($event)" placeholder="Name">
+        <h2>Username</h2>
+        <input spellcheck="false" (change)="usernamevalue($event)" placeholder="Username">
+
+        <h2>Password</h2>
+        <input spellcheck="false" (change)="passwordvalue($event)" placeholder="Password" type="password">
+        <button (click)="register()">Register</button>
+        <h5>Already have an account?<strong (click)="logins()"> Login</strong>
+        </h5>
+    </div>
+    <div *ngIf="login===1" class="regform">
+        <h1>Login</h1>
+        <h2>Username</h2>
+        <input spellcheck="false" (change)="usernamevalue($event)" placeholder="Username">
+
+        <h2>Password</h2>
+        <input spellcheck="false" (change)="passwordvalue($event)" placeholder="Password" type="password">
+        <button (click)="home()">Login</button>
+        <h5>Don't have an account?<strong (click)="signup()"> Sign up</strong>
+        </h5>
+    </div>
+
+
+</div>

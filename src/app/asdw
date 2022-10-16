@@ -1,0 +1,247 @@
+
+
+import { SocketioService } from './socketio.service';
+import { SendService } from './services/send.service';
+import { Component, OnInit } from '@angular/core';
+import { PostService } from './services/post.service';
+import {ActivatedRoute} from "@angular/router";
+
+import {SimplePeer} from "simple-peer"
+import { Instance, SignalData } from 'simple-peer';
+import { MessagesService } from './services/messages.service';
+import {Router} from "@angular/router";
+import { Socket } from 'ngx-socket-io';
+
+declare const Peer:any;
+
+declare const SimplePeer: import('simple-peer').SimplePeer;
+let peer = new SimplePeer({ initiator: true, trickle: false })
+let peer2=new SimplePeer()
+interface VideoElement {
+  muted: boolean;
+  srcObject: MediaStream;
+  userId: string;
+}
+
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css','./profile/profile.component.css']
+})
+export class AppComponent implements OnInit {
+  currentUserId:string = "asdsadsadasdsadsad";
+  videos: VideoElement[] = [];
+title = 'frontend';
+addbtn2="addbtn" 
+addbtn3="addbtnno" 
+addbtn4="addbtnno" 
+addbtn5="addbtnno"
+
+
+message:any=""
+
+
+
+
+
+
+
+
+
+
+user=localStorage.getItem("myid") 
+
+posts:any;
+
+messages:any;
+
+constructor(
+  
+
+  private socket: Socket,
+  private router: Router,
+  private socketservice:SocketioService,
+  private service:PostService,
+  private service2:MessagesService,
+  private service3:SendService
+
+  ) {}
+  
+create() {
+  console.log('createRoom');
+  this.router.navigate([`/asdsadsadasdsadsad`]);
+}
+
+
+submit(){
+  console.log("hy")
+}
+
+submit2(){
+  
+this.addbtn3="addbtn3"  
+
+this.addbtn4="addbtn4" 
+
+this.addbtn5="addbtn5" 
+
+}
+data={
+  senderid:this.user,
+recid:"u63207a44ea5f532a28076ad0",
+  sendername:"usama",
+  message:this.message
+} 
+
+valuechange(val:any){
+  this.message=val.target.value
+}
+
+
+call(){
+  this.socketservice.sendcallto("63207a44ea5f532a2lo80s7w6ad0ww")
+}
+refresh(){
+
+
+  this.data={
+    senderid:this.user,
+    recid:"u63207a44ea5f532a28076ad0",
+    sendername:"usama",
+    message:this.message
+  } 
+
+
+ this.service3.postmessage(this.data)
+.subscribe(hero => {
+  var a:any=localStorage.getItem("myid")
+  this.socketservice.sendmessageto("63207a44ea5f532a280s76ad0ww")
+
+
+
+this.service2.getmessages()
+.subscribe(response => {
+  this.messages = response;
+
+
+
+})
+})
+
+
+
+  
+}
+  
+ngOnDestroy() {
+  this.socketservice.disconnect();
+}
+
+
+
+
+addMyVideo(stream: MediaStream) {
+  this.videos.push({
+    muted: true,
+    srcObject: stream,
+    userId: this.currentUserId,
+  });
+}
+
+addOtherUserVideo(userId: string, stream: MediaStream) {
+  console.log("add other video")
+  const alreadyExisting = this.videos.some(video => video.userId === userId);
+  if (alreadyExisting) {
+    console.log(this.videos, userId);
+    return;
+  }
+  this.videos.push({
+    muted: false,
+    srcObject: stream,
+    userId,
+  });
+}
+
+onLoadedMetadata(event: Event) {
+  (event.target as HTMLVideoElement).play();
+}
+
+params:any="123456"
+ngOnInit() {
+
+var a=new Date
+console.log(a)
+var b=a.toDateString()
+
+console.log(b)
+
+  peer.on('signal',(data:any)=>{
+    console.log("peer1"+data)
+    peer2.signal(a.toString())
+
+
+  })
+
+  peer2.on('signal', (data:any) => {
+
+
+    console.log("peer2"+data)
+    peer.signal(a.toString())
+  })
+
+  
+
+  
+    console.log(`Initialize Peer with id ${this.currentUserId}`);
+
+
+    navigator.mediaDevices.getUserMedia({
+      audio: true,
+      video: true,
+    })
+      .catch((err) => {
+        console.error('[Error] Not able to retrieve user media:', err);
+        return null;
+      })
+      .then((stream: MediaStream | null) => {
+        
+        if (stream) {
+          
+          this.addMyVideo(stream);
+          console.log("video added")
+        }
+      
+
+
+      });
+
+
+      
+
+  
+
+
+
+
+
+
+
+
+
+
+  this.socketservice.setupSocketConnection();
+  this.service.getPosts()
+    .subscribe(response => {
+      this.posts = response;
+    })
+    
+  this.service2.getmessages()
+  .subscribe(response => {
+    this.messages = response;
+
+
+
+  })
+}
+}

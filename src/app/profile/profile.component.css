@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+}
+.sidebar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: max-content;
+    flex-direction: column;
+}
+.chatbox>span>h2{
+  font-family: 'Roboto', sans-serif;
+
+    color: rgb(29, 143, 244);
+    font-weight: 300;
+    font-size: 13px;
+    font-style: italic;
+    margin-left: 10px;
+}
+
+
+
+.chatbox>h3{
+    
+  font-family: 'Poppins', sans-serif;
+  color: rgb(150, 153, 155);
+  font-weight: 400;
+  font-size: 12px;
+  font-style: italic;
+  margin-left: 25%;
+}
+.chatbox>span>h1{
+  font-family: 'Roboto', sans-serif;
+
+    color: rgb(2, 35, 82);
+    
+    margin-left: 30px;
+    font-size: 15px;
+    font-weight: 500;
+}
+.chatbox{
+    width: 90%;
+    cursor: pointer;
+    padding-top: 25px;
+    box-shadow: 0px 11px 22px -20px rgba(0,0,0,0.69);
+-webkit-box-shadow: 0px 11px 22px -20px rgba(0,0,0,0.69);
+-moz-box-shadow: 0px 11px 22px -20px rgba(0,0,0,0.69);
+    margin-top: 25px;
+    border-radius: 5px;
+    height: 150px;
+    background-color: white;
+    display: flex;
+
+    animation-name: example3aaw;
+    animation-duration: 0.5s;
+    animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+    }
+    
+    @keyframes example3aaw {
+      0% {transform: scale(0);
+      
+      }
+      100% {transform: scale(1);}
+      
+      }
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+}

@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "firecommerce-7d1c5": {
+      "hosting": {
+        "frontend": [
+          "firecommerce-7d1c5"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "firecommerce-7d1c5"
+  }
+}
