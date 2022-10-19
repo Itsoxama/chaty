@@ -223,7 +223,7 @@
 
         </div>
         <div class="column">
-            <div class="chat-box">
+            <div *ngIf="oo===0" class="chat-box">
                 <div class="header">
                     <div class="headername">
                         <h1>{{currentroom.name}}</h1>
@@ -386,6 +386,52 @@
                     </div>
 
                 </div>
+
+            </div>
+            <div *ngIf="oo===1" class="chat-box ">
+                <div class="header headerr">
+                    <div class="headername">
+
+                    </div>
+                    <div class="call">
+
+                        <div class="options options2s" (click)="create()">
+
+                        </div>
+
+                        <div class="options options2s" (click)="call()">
+
+                        </div>
+
+
+                        <div class="options" (click)="report()">
+
+                            <i class="bi threedots three2 bi-three-dots-vertical"></i>
+
+                        </div>
+                        <div [ngClass]="[reportmenu]">
+                            <h2 (click)="closereport()">X</h2>
+                            <h1 (click)="showwarn()">Delete Account</h1>
+                            <h1 (click)="showdeskmenu2()">Participants</h1>
+
+                            <h1 (click)="logout()">Logout</h1>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+                <div class="messages" style="overflow: scroll;" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+                 <div class="chatbox3">
+
+
+                    <i class="bi iconchat bi-chat-left-text"></i>
+                    <h1>No Chats yet!</h1>
+                 </div>
+
+                </div>
+
 
             </div>
 
