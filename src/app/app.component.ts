@@ -919,6 +919,8 @@ if(this.currentroom.participants!='No Chats yet!'){
           })
 
 
+
+
       }
       else if (ai === 1) {
 
@@ -1179,6 +1181,7 @@ this.socketservice.sendmessageto(this.curruser)
       name: "",
       participants: 'No Chats yet!'
     }
+    this.oo=1
     this.activeroom = "chat"
     this.currentroom = temproom
     this.getgroupservice.getgroups(groupmatch)
@@ -1231,6 +1234,9 @@ this.invitelists.forEach((val,index)=>{
               
             });
             this.posts=this.userlists
+            if(this.userlists.length>=1){
+              this.oo=0
+            }
           }
           
         });
@@ -1336,6 +1342,7 @@ this.invitelists.forEach((val,index)=>{
 
 
   }
+
   deleteinvite(id:any){
 
 
@@ -1378,6 +1385,7 @@ this.invitelists.forEach((val,index)=>{
 
 
   }
+  oo:any=1
   userlists: Array<{ username: any }> = [];
   
   invitelists2: Array<{ name: any,id:any }> = [];
