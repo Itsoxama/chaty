@@ -708,6 +708,9 @@ animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
 -webkit-box-shadow: 0px 0px 18px -10px rgba(0,0,0,0.75);
 -moz-box-shadow: 0px 0px 18px -10px rgba(0,0,0,0.75);
 }
+.options2s{
+  box-shadow: none!important;
+}
 .msgchat{
   box-shadow: 0px 0px 27px -7px rgba(18,144,217,0.75);
 -webkit-box-shadow: 0px 0px 27px -7px rgba(18,144,217,0.75);
@@ -779,6 +782,25 @@ to {
   width: 90%!important;
   border-color: rgb(176, 171, 171)!important;
   height: 60%!important;
+}
+.chatbox3{
+  flex-direction: column;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.iconchat{
+  color: rgb(126, 126, 126);
+  font-size: 35px;
+}
+.chatbox3>h1{
+
+  color: rgb(126, 126, 126);
+
+  font-family: 'Poppins', sans-serif!important;
+
+
 }
 .reportmenu{
   
@@ -907,6 +929,8 @@ font-size: 12px;
   padding-right: 30px;
 }
 .header{
+  align-self: flex-start!important;
+  justify-self: flex-start!important ;
   height: 100px;
   width: 100%;
   border-bottom: 2px solid rgb(232, 238, 248);
@@ -915,6 +939,10 @@ justify-content: space-between;
   background-color: rgb(249, 251, 251);
   align-items: center;
 
+}
+.headerr{
+  background-color: white!important;
+  border-bottom: none!important;
 }
 
 *{
