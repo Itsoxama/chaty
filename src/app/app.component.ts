@@ -857,7 +857,6 @@ if(this.stype==='file'){
   this.msgchat = "msgchat3 uploas"
 
   const file = this.filex.target.files[0];
-
   var n = Date.now() + file.name;
   const filePath = `RoomsImages/${n}`;
   const fileRef = this.storage.ref(filePath);
@@ -1024,6 +1023,7 @@ this.socketservice.sendmessageto(this.curruser)
   }
 
 
+  callername:any
 
 
   onLoadedMetadata(event: Event) {
@@ -1070,13 +1070,19 @@ this.socketservice.sendmessageto(this.curruser)
     this.socket.on('calling', (data: string, peer: string, user: any) => {
       var c: any = a?.search(data)
       if (c >= 0) {
-        console.log(data.toString())
-        console.log(peer + "calling")
+
 
         this.calling = "calling"
         console.log("from" + user)
+        this.posts.forEach((val:any) => {
+          if(val._id===user){
+            this.callername=val.name
+          }
+          
+        });
         this.tpear = JSON.parse(peer)
         this.from = user
+
 
 
 
@@ -1234,6 +1240,7 @@ this.invitelists.forEach((val,index)=>{
               
             });
             this.posts=this.userlists
+            console.log(this.posts)
             if(this.userlists.length>=1){
               this.oo=0
             }
