@@ -657,7 +657,7 @@ currrom:any
     }
 
     else {
-      var po="https://dex2.quickdex.net/?room="+Date.now().toString()
+      var po="https://server.quickdex.net/?room="+Date.now().toString()
       this.message = "video Call Started"+po
       let ai = 0
       this.data2 = {
