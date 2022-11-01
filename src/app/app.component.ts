@@ -601,8 +601,12 @@ currrom:any
   }
   
   parts: Array<{ username:any }> = [];
-  joinmeeting(val: any) {
-    window.location.href = val[1]
+  joinmeeting(val: any,idd:any) {
+
+
+
+
+    window.location.href = val[1]+"_"+idd
   }
 
   create() {
@@ -700,8 +704,9 @@ this.socketservice.sendmessageto(this.curruser)
 
 
                 this.socket.emit('newgroupmsg', this.currentroom.id);
+                this.message=''
 
-                window.location.href = po            })
+                       })
           }
           ai = ai + 1
           repeat();
