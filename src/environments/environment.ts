@@ -14,7 +14,7 @@ export const environment = {
     measurementId: 'G-191265GFJ5',
   },
   production: false,
-  SOCKET_ENDPOINT: 'http://localhost:5000',
+  SOCKET_ENDPOINT: 'https://server.quickdex.net',
   ursssl:"asdasd"
 };
 
