@@ -608,8 +608,9 @@ currrom:any
 
     window.location.href = val[1]+"_"+idd
   }
-
-  create() {
+calltype:any
+  create(type:any) {
+    var l=this.user+"cfgv"+type
     if (this.activeroom === "chat") {
 
       navigator.mediaDevices.getUserMedia({
@@ -632,7 +633,7 @@ currrom:any
             console.log(JSON.stringify(data))
             this.tpear = JSON.stringify(data)
 
-            this.socketservice.sendcallto(this.curruser, this.tpear, this.user)
+            this.socketservice.sendcallto(this.curruser, this.tpear, l)
           })
           this.peer.on('data', (data: any) => {
 
@@ -1029,6 +1030,7 @@ this.socketservice.sendmessageto(this.curruser)
 
 
   callername:any
+  callprefix:any
 
 
   onLoadedMetadata(event: Event) {
@@ -1072,7 +1074,17 @@ this.socketservice.sendmessageto(this.curruser)
 
       }
     });
-    this.socket.on('calling', (data: string, peer: string, user: any) => {
+    this.socket.on('calling', (data: string, peer: string, g: any) => {
+      var ax =g.split("cfgv")
+      var user=ax[0]
+      console.log(ax[1])
+      if(ax[1]==='video'){
+      this.calltype='video'
+
+      }
+      else{
+        this.calltype='audio'
+      }
       var c: any = a?.search(data)
       if (c >= 0) {
 
@@ -1080,8 +1092,11 @@ this.socketservice.sendmessageto(this.curruser)
         this.calling = "calling"
         console.log("from" + user)
         this.posts.forEach((val:any) => {
+          
           if(val._id===user){
             this.callername=val.name
+            this.callprefix=val.name.substring(0,2).toUpperCase()
+            
           }
           
         });
