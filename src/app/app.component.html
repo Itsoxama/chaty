@@ -16,7 +16,7 @@
             <div class="pikupcall">
                 {{callername}} is Calling
                 <div class="redcall">
-                    UK
+                    {{callprefix}}
                 </div>
             </div>
             <div>
@@ -137,15 +137,35 @@
 
         <div [ngClass]="[callvideo]">
 
-            <div class="video-grid">
+            <div class="video-grid" *ngIf="calltype==='video'">
                 <span class="callcirclex endcall" (click)="closeconm()">
 
                     <i class="bi callicon3 bi-x"></i>
                 </span>
-                <div *ngFor="let video of videos">
-                    <video [srcObject]="video.srcObject" (loadedmetadata)="onLoadedMetadata($event)"
+
+                <div  *ngFor="let video of videos">
+               
+                    <video   [srcObject]="video.srcObject" (loadedmetadata)="onLoadedMetadata($event)"
                         [muted]="video.muted">
                     </video>
+                    
+                </div>
+            </div>
+            <div class="video-grid video-gridss"  *ngIf="calltype==='audio'">
+                <h3 class="tops">
+                    <i class="bi-telephone-fill"></i>
+                </h3>
+                <span class="callcirclex endcall" (click)="closeconm()">
+
+                    <i class="bi callicon3 bi-x"></i>
+                </span>
+
+                <div  *ngFor="let video of videos">
+               
+                    <video class="opp"   [srcObject]="video.srcObject" (loadedmetadata)="onLoadedMetadata($event)"
+                        [muted]="video.muted">
+                    </video>
+                    
                 </div>
             </div>
         </div>
@@ -232,12 +252,12 @@
                     </div>
                     <div class="call">
 
-                        <div class="options" (click)="create()">
+                        <div class="options" (click)="create('video')">
 
                             <i class="bi callicon bi-camera-video-fill"></i>
                         </div>
 
-                        <div class="options" (click)="call()">
+                        <div class="options" (click)="create('audio')">
 
                             <i class="bi callicon bi-telephone-fill"></i>
                         </div>
@@ -395,7 +415,7 @@
                     </div>
                     <div class="call">
 
-                        <div class="options options2s" (click)="create()">
+                        <div class="options options2s" (click)="create('audio')">
 
                         </div>
 
