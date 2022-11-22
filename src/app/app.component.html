@@ -138,15 +138,23 @@
         <div [ngClass]="[callvideo]">
 
             <div class="video-grid" *ngIf="calltype==='video'">
-                <span class="callcirclex endcall" (click)="closeconm()">
+                <span class="callcirclex endcall" >
+                   
+                    <i (click)="audiomute()" class="bi callicon3 bi-mic-fill" *ngIf="mic===false"></i>
+                    <i (click)="audiomute()" class="bi callicon3 bi-mic-mute-fill" *ngIf="mic===true"></i>
+ 
+                    <i class="bi callicon3 bi-x"
+                    (click)="closeconm()"></i>
+                    
+                    <i (click)="videomute()" class="bi callicon3  bi-camera-video-fill" *ngIf="vmute===false"></i>
+                    <i  (click)="videomute()" class="bi callicon3 bi-camera-video-off-fill" *ngIf="vmute===true"></i>
 
-                    <i class="bi callicon3 bi-x"></i>
                 </span>
 
                 <div  *ngFor="let video of videos">
                
                     <video   [srcObject]="video.srcObject" (loadedmetadata)="onLoadedMetadata($event)"
-                        [muted]="video.muted">
+                        [muted]="mute">
                     </video>
                     
                 </div>
@@ -155,15 +163,19 @@
                 <h3 class="tops">
                     <i class="bi-telephone-fill"></i>
                 </h3>
-                <span class="callcirclex endcall" (click)="closeconm()">
-
-                    <i class="bi callicon3 bi-x"></i>
+               
+                <span class="callcirclex endcall" >
+                    <i (click)="audiomute()" class="bi callicon3 bi-mic-fill" *ngIf="mic===false"></i>
+                    <i (click)="audiomute()" class="bi callicon3 bi-mic-mute-fill" *ngIf="mic===true"></i>
+                    <i class="bi callicon3 bi-x"
+                    (click)="closeconm()"></i>
+                    
                 </span>
 
                 <div  *ngFor="let video of videos">
                
-                    <video class="opp"   [srcObject]="video.srcObject" (loadedmetadata)="onLoadedMetadata($event)"
-                        [muted]="video.muted">
+                    <video class="opp oppe"   [srcObject]="video.srcObject" (loadedmetadata)="onLoadedMetadata($event)"
+                        [muted]="mute">
                     </video>
                     
                 </div>
@@ -282,9 +294,9 @@
 
                 <div class="messages" style="overflow: scroll;" #scrollMe [scrollTop]="scrollMe.scrollHeight">
                     <div *ngFor="let msg of messages">
-                        <div *ngIf="user===msg.senderid" class="parentcircle">
+                        <div *ngIf="user===msg.senderid&&msg.hidefrom!==user" class="parentcircle">
                             <div *ngIf="msg.class==='dltmsg'" class="dltmsg">
-                                <h3 (click)="deletemsg(msg._id)"> Delete</h3>
+                                <h3 (click)="deletemsg(msg._id,msg.hidefrom)"> Delete</h3>
                                 <h3  *ngIf="msg.message.substring(4,9)!=='xrcfd'" (click)="editmsg(msg._id)">Edit</h3>
 
                             </div>
@@ -316,7 +328,7 @@
                             </div>
 
                         </div>
-                        <div *ngIf="user!==msg.senderid" class="parentcircle2">
+                        <div *ngIf="user!==msg.senderid&&msg.hidefrom!==user" class="parentcircle2">
                             <div *ngIf="user!==msg.senderid" class="circleuser">
                                 K
                             </div>
@@ -343,7 +355,7 @@
                             </div>
                             <i class="bi threedots bi-three-dots" (click)="changeclass(msg._id)"></i>
                             <div *ngIf="msg.class==='dltmsg'" class="dltmsg">
-                                <h3 (click)="deletemsg(msg._id)"> Delete</h3>
+                                <h3 (click)="deletemsg(msg._id,msg.hidefrom)"> Delete</h3>
 
                             </div>
 
