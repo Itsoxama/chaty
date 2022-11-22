@@ -31,6 +31,7 @@ import { updatemsg } from './services/updatemsg.service';
 import { updmsg } from './services/updmsg.service';
 import { allowedservice } from './services/allowed.service';
 import { deleteinv } from './services/deleteinvite.service';
+import { hidefrom } from './services/hidefrom.service';
 
 
 declare const Peer: any;
@@ -59,8 +60,8 @@ export class AppComponent implements OnInit {
   addbtn5 = "addbtnno"
   message: any = ""
   user = localStorage.getItem("myid")
-  
-  usera:any = localStorage.getItem("myid")?.toString()
+
+  usera: any = localStorage.getItem("myid")?.toString()
   posts: any;
   messages: any;
   calling: String = "calling2"
@@ -72,78 +73,78 @@ export class AppComponent implements OnInit {
   password: String = ""
   deskusers: any
   desk: any = "deskx2"
-  
+
   deskus: any = "deskx2"
-  
+
   deskus2: any = "deskx2"
-  showin(){
-    this.deskus2='deskx'
+  showin() {
+    this.deskus2 = 'deskx'
   }
-  hidein(){
-    
-    this.deskus2='deskx2'
+  hidein() {
+
+    this.deskus2 = 'deskx2'
   }
-  deskxh:any="deskxh3"
+  deskxh: any = "deskxh3"
   userlist: Array<{ username: any, userid: any }> = [];
   deskname: String = ""
   grouplist: any
   currentroom: any
-  warn:any='warn2'
-  showfilex:any='showfile2'
+  warn: any = 'warn2'
+  showfilex: any = 'showfile2'
   reportmenu: String = "reportmenu2"
   activeroom: String = ""
-  deskx:any="deskx2"
-  
-  deskxn:any="deskx2"
-  showfile(){
-    this.showfilex='showfile'
+  deskx: any = "deskx2"
+
+  deskxn: any = "deskx2"
+  showfile() {
+    this.showfilex = 'showfile'
   }
-hidefile(){
-    this.showfilex='showfile2'
+  hidefile() {
+    this.showfilex = 'showfile2'
   }
-  closereporat(){
-    this.desk="deskx2"
+  closereporat() {
+    this.desk = "deskx2"
   }
-  
-  showe(){
-    this.deskus="deskx"
+
+  showe() {
+    this.deskus = "deskx"
   }
-  closereporatx(){
-    this.deskus="deskx2"
+  closereporatx() {
+    this.deskus = "deskx2"
   }
   hidedeska() {
-    
+
     alert("Message sent")
     this.deskxn = "deskx2"
   }
-  showwarn(){
-    this.warn='warn'
+  showwarn() {
+    this.warn = 'warn'
   }
-  
-  hidewarn(){
-    this.warn='warn2'
+
+  hidewarn() {
+    this.warn = 'warn2'
   }
-  tempmsg:any
-  curid:any
-  newmsg(val:any){
-    this.tempmsg=val.target.value
+  tempmsg: any
+  curid: any
+  newmsg(val: any) {
+    this.tempmsg = val.target.value
 
   }
 
   hidedeskaa() {
-    
+
     alert("Message updated")
     this.editmsg2 = "deskx2"
-    var da={
-      message:this.tempmsg,
-      _id:this.curid
+    var da = {
+      message: this.tempmsg,
+      _id: this.curid
 
     }
-    if(this.activeroom==='chat'){
-var ai=0
+    if (this.activeroom === 'chat') {
+      var ai = 0
 
 
-      
+
       const repeat = () => {
 
         setTimeout(() => {
@@ -152,10 +153,9 @@ var ai=0
           if (ai === 2) return
           else if (ai === 0) {
 
-            this.updatems.createdesk(da).subscribe(res=>
-              {
-                console.log(res)
-              })
+            this.updatems.createdesk(da).subscribe(res => {
+              console.log(res)
+            })
 
           }
           else if (ai === 1) {
@@ -175,7 +175,7 @@ var ai=0
                 console.log(response)
                 this.messages = response
                 this.socket.emit('my message', this.curruser);
-                this.message=''
+                this.message = ''
 
               })
           }
@@ -186,9 +186,9 @@ var ai=0
 
       repeat()
     }
-    else{
-        ai=0
-      
+    else {
+      ai = 0
+
       const repeat = () => {
 
         setTimeout(() => {
@@ -198,20 +198,19 @@ var ai=0
           else if (ai === 0) {
 
 
-            this.upd.createdesk(da).subscribe(res=>
-              {
-                console.log(res)
-              })
-      
+            this.upd.createdesk(da).subscribe(res => {
+              console.log(res)
+            })
+
           }
           else if (ai === 1) {
 
             this.groupmsgservice.getgroupmsg(this.currrom)
-            .subscribe(response => {
-              this.messages = response
-      
-      
-            })
+              .subscribe(response => {
+                this.messages = response
+
+
+              })
           }
           ai = ai + 1
           repeat();
@@ -222,7 +221,7 @@ var ai=0
     }
   }
   showdeskmenu2a() {
-    
+
     this.closereport()
     this.deskxn = "deskx"
   }
@@ -277,33 +276,33 @@ var ai=0
     this.reportmenu = "reportmenu"
   }
   createdesk() {
-    if(this.userlist.length<=1){
+    if (this.userlist.length <= 1) {
       alert("Please add at least 1 members")
     }
-    else{
-      if(this.deskname.length===0){
-        this.deskxh='deskxh2'
+    else {
+      if (this.deskname.length === 0) {
+        this.deskxh = 'deskxh2'
       }
-      else{
-        
-    var deskspace = {
-      name: this.deskname,
-      users: this.userlist
+      else {
 
-    }
-    this.deskservice.createdesk(deskspace)
-      .subscribe((response: any) => {
+        var deskspace = {
+          name: this.deskname,
+          users: this.userlist
 
-        console.log(response)
+        }
+        this.deskservice.createdesk(deskspace)
+          .subscribe((response: any) => {
 
-        window.location.reload()
-      }
-      )
-    this.desk = "deskx2"
+            console.log(response)
+
+            window.location.reload()
+          }
+          )
+        this.desk = "deskx2"
       }
     }
   }
-  nhj:any=localStorage.getItem('name')
+  nhj: any = localStorage.getItem('name')
   addusers(value: any, id: any) {
     var i = 9
     var temp = {
@@ -342,7 +341,7 @@ var ai=0
           console.log(response._id)
           this.login = 0
           localStorage.setItem("myid", response._id)
-          
+
           localStorage.setItem("name", response.name)
           this.ctime()
           window.location.reload()
@@ -371,13 +370,13 @@ var ai=0
   images: any = Observable<HTMLImageElement[]>;
 
   constructor(
-    private deleteinv:deleteinv,
-    private inviteservice:inviteservive,
-    private allowedservice:allowedservice,
+    private deleteinv: deleteinv,
+    private inviteservice: inviteservive,
+    private allowedservice: allowedservice,
     private lastservice: LastService,
     private httpclient: HttpClient,
-    private deletemsgs:deletemsg ,
-    private deleteussr:deleteuser ,
+    private deletemsgs: deletemsg,
+    private deleteussr: deleteuser,
     private creategroupmsgservice: creategroupmsg,
     private groupmsgservice: groupmsg,
     private deskservice: createdesk,
@@ -392,25 +391,26 @@ var ai=0
     private service3: SendService,
     private getgroupservice: getusergroup,
     private storage: AngularFireStorage,
-    private delgroupmsg:delgmsg,
-    private callcc:callv,
-    private updatems:updatemsg,
-    private upd:updmsg,
+    private delgroupmsg: delgmsg,
+    private callcc: callv,
+    private updatems: updatemsg,
+    private upd: updmsg,
+    private hidefroms: hidefrom,
 
   ) { }
-  filename:any='File'
+  filename: any = 'File'
   downloadURL: any
   fb: any
   msgchat: String = "msgchat4"
   code: String = "filexrcfd"
-  filex:any
-  stype:any
+  filex: any
+  stype: any
 
   uploadfile(val: any) {
-    this.filename=val.target.files[0].name
-this.stype='file'
-    this.filex=val
-this.showfile()
+    this.filename = val.target.files[0].name
+    this.stype = 'file'
+    this.filex = val
+    this.showfile()
 
 /*
 var fileref="asdsad"
@@ -426,44 +426,56 @@ var fileref="asdsad"
 
 
   curruser: any = ""
-  changeclass(val2w:any){
-    var bnm: any[]=[]
-    this.messages.forEach((val:any) => {
-      if(val._id===val2w&&val.class==='dltmsg2'){
-        val = { ...val, class: 'dltmsg'};
- 
+  changeclass(val2w: any) {
+    var bnm: any[] = []
+    this.messages.forEach((val: any) => {
+      if (val._id === val2w && val.class === 'dltmsg2') {
+        val = { ...val, class: 'dltmsg' };
+
       }
-      else{
-        val = { ...val, class: 'dltmsg2'};
+      else {
+        val = { ...val, class: 'dltmsg2' };
       }
-      
+
       bnm.push(val)
-      
+
     });
-  
-    this.messages=bnm
+
+    this.messages = bnm
 
   }
-  deletemsg(val:any){
-    var bnm: any[]=[]
-    this.messages.forEach((val2:any) => {
-      if(val2._id!=val){
+  deletemsg(val: any,hidefrom:any) {
+    var bnm: any[] = []
+    this.messages.forEach((val2: any) => {
+      if (val2._id != val) {
         bnm.push(val2)
       }
 
-      
-      
-    });
-  console.log(bnm)
-    this.messages=bnm
 
-    var jso={
-      _id:val
+
+    });
+    console.log(bnm)
+    this.messages = bnm
+
+    var jso = {
+      _id: val
 
     }
-if(this.activeroom==='chat'){
+    
+    var jso2 = {
+      _id: val,
+      id:localStorage.getItem('myid')
+
+    }
+    if (this.activeroom === 'chat') {
+
+if(hidefrom){
+  
+
   this.deletemsgs.getgroups(jso)
+
   .subscribe(response => {
+    
 
     console.log(response)
 
@@ -472,26 +484,42 @@ if(this.activeroom==='chat'){
   })
 }
 else{
-  this.delgroupmsg.getgroups(jso)
+
+  
+  this.hidefroms.getgroups(jso2)
+
   .subscribe(response => {
+    
 
     console.log(response)
 
 
 
   })
-
-
 }
-  }
-  
-  async deleteusr(){
-    var jso={
-      _id:this.user
+     
+    }
+    else {
+      this.delgroupmsg.getgroups(jso)
+        .subscribe(response => {
+
+          console.log(response)
+
+
+
+        })
+
 
     }
-var ai=0
-    
+  }
+
+  async deleteusr() {
+    var jso = {
+      _id: this.user
+
+    }
+    var ai = 0
+
     const repeat = () => {
 
       setTimeout(() => {
@@ -516,11 +544,11 @@ var ai=0
 
 
 
-  
-   
-    
+
+
+
   }
-  
+
   getmsg(value: String, name: any, last: any) {
 
     this.side = "side"
@@ -536,34 +564,34 @@ var ai=0
       .subscribe(response => {
 
         this.messages = response
-        var bnm: any[]=[]
-        this.messages.forEach((val:any) => {
-          val = { ...val, class: 'dltmsg2'};
-       bnm.push(val)
-          
-          
-          
+        var bnm: any[] = []
+        this.messages.forEach((val: any) => {
+          val = { ...val, class: 'dltmsg2' };
+          bnm.push(val)
+
+
+
         });
-        this.messages=bnm
-      
+        this.messages = bnm
+
 
 
       })
-      var pussh={
-        username:name
+    var pussh = {
+      username: name
 
-      }
-      this.parts=[]
-      this.parts.push(pussh)
-         this.currentroom = {
+    }
+    this.parts = []
+    this.parts.push(pussh)
+    this.currentroom = {
       name: name,
       participants: "last active " + last
     }
   }
   video: String = "video Call Started"
-currrom:any
+  currrom: any
   setroom(val: any) {
-    
+
     this.side = "side"
     this.activeroom = "group"
     var temproom = {
@@ -575,7 +603,7 @@ currrom:any
     var temp = {
       deskid: val
     }
-    this.currrom=temp
+    this.currrom = temp
     this.groupmsgservice.getgroupmsg(temp)
       .subscribe(response => {
         this.messages = response
@@ -590,7 +618,7 @@ currrom:any
         temproom.participants = "Participants " + val2.users.length.toString()
         this.currentroom = temproom
         console.log(val2.users)
-        this.parts=val2.users
+        this.parts = val2.users
         console.log(this.parts)
 
       }
@@ -599,21 +627,23 @@ currrom:any
     })
 
   }
-  
-  parts: Array<{ username:any }> = [];
-  joinmeeting(val: any,idd:any) {
+
+  parts: Array<{ username: any }> = [];
+  joinmeeting(val: any, idd: any) {
 
 
 
 
-    window.location.href = val[1]+"_"+idd
+    window.location.href = val[1] + "_" + idd
   }
-calltype:any
-  create(type:any) {
-    var l=this.user+"cfgv"+type
+  calltype: any
+  create(type: any) {
+   console.log(this.curruser)
+   this.from=this.curruser
+    var l = this.user + "cfgv" + type
     if (this.activeroom === "chat") {
 
-      navigator.mediaDevices.getUserMedia({
+       navigator.mediaDevices.getUserMedia({
         audio: true,
         video: true,
       })
@@ -662,8 +692,8 @@ calltype:any
     }
 
     else {
-      var po="https://server.quickdex.net/?room="+Date.now().toString()
-      this.message = "video Call Started"+po
+      var po = "https://server.quickdex.net/?room=" + Date.now().toString()
+      this.message = "video Call Started" + po
       let ai = 0
       this.data2 = {
         senderid: this.user,
@@ -705,9 +735,9 @@ this.socketservice.sendmessageto(this.curruser)
 
 
                 this.socket.emit('newgroupmsg', this.currentroom.id);
-                this.message=''
+                this.message = ''
 
-                       })
+              })
           }
           ai = ai + 1
           repeat();
@@ -727,14 +757,14 @@ this.socketservice.sendmessageto(this.curruser)
 
 
   }
-  editmsg2:any="deskx2"
+  editmsg2: any = "deskx2"
 
-editmsg(val:any){
-  console.log(val)
-  this.curid=val
-  this.editmsg2="deskx"
-  this.changeclass(val)
-}
+  editmsg(val: any) {
+    console.log(val)
+    this.curid = val
+    this.editmsg2 = "deskx"
+    this.changeclass(val)
+  }
 
   submit2() {
 
@@ -760,9 +790,9 @@ editmsg(val:any){
   }
 
   call() {
-this.callcc.getmessage().subscribe(res=>{
-  console.log(res)
-});
+    this.callcc.getmessage().subscribe(res => {
+      console.log(res)
+    });
 
 
   }
@@ -858,170 +888,170 @@ this.callcc.getmessage().subscribe(res=>{
 
   }
   refresh() {
-if(this.stype==='file'){
-  
-  this.msgchat = "msgchat3 uploas"
+    if (this.stype === 'file') {
 
-  const file = this.filex.target.files[0];
-  var n = Date.now() + file.name;
-  const filePath = `RoomsImages/${n}`;
-  const fileRef = this.storage.ref(filePath);
-  const task = this.storage.upload(`RoomsImages/${n}`, file);
-  task
-    .snapshotChanges()
-    .pipe(
-      finalize(() => {
-        this.downloadURL = fileRef.getDownloadURL();
-        this.downloadURL.subscribe((url: any) => {
-          if (url) {
-            this.fb = url;
+      this.msgchat = "msgchat3 uploas"
 
-            this.msgchat = "msgchat4"
-          }
-          console.log(this.fb);
-          
-          this.stype="asd"
-          this.showfilex='showfile2'
-          this.message = "filexrcfd"+'+'+this.filename+'+'+ this.fb
-          
-          this.refresh()
+      const file = this.filex.target.files[0];
+      var n = Date.now() + file.name;
+      const filePath = `RoomsImages/${n}`;
+      const fileRef = this.storage.ref(filePath);
+      const task = this.storage.upload(`RoomsImages/${n}`, file);
+      task
+        .snapshotChanges()
+        .pipe(
+          finalize(() => {
+            this.downloadURL = fileRef.getDownloadURL();
+            this.downloadURL.subscribe((url: any) => {
+              if (url) {
+                this.fb = url;
 
-        });
-      })
-    )
-    .subscribe(url => {
-      if (url) {
+                this.msgchat = "msgchat4"
+              }
+              console.log(this.fb);
 
-      }
-    });
+              this.stype = "asd"
+              this.showfilex = 'showfile2'
+              this.message = "filexrcfd" + '+' + this.filename + '+' + this.fb
 
+              this.refresh()
 
-}
-
-
-else{
-  
-  if (this.activeroom === "chat"&&this.message.length>0) {
-if(this.currentroom.participants!='No Chats yet!'){
-
-  let ai = 0
-  this.data = {
-    senderid: this.user,
-    recid: this.curruser,
-    sendername: "usama",
-    message: this.message
-  }
-  const repeat = () => {
-
-    setTimeout(() => {
-
-
-      if (ai === 2) return
-      else if (ai === 0) {
-        console.log(ai)
-        this.service3.postmessage(this.data)
-          .subscribe(hero => {
+            });
           })
+        )
+        .subscribe(url => {
+          if (url) {
+
+          }
+        });
+
+
+    }
+
+
+    else {
+
+      if (this.activeroom === "chat" && this.message.length > 0) {
+        if (this.currentroom.participants != 'No Chats yet!') {
+
+          let ai = 0
+          this.data = {
+            senderid: this.user,
+            recid: this.curruser,
+            sendername: "usama",
+            message: this.message
+          }
+          const repeat = () => {
+
+            setTimeout(() => {
+
+
+              if (ai === 2) return
+              else if (ai === 0) {
+                console.log(ai)
+                this.service3.postmessage(this.data)
+                  .subscribe(hero => {
+                  })
 
 
 
 
-      }
-      else if (ai === 1) {
+              }
+              else if (ai === 1) {
 
 
-        console.log(ai)
-        var getusermsg = {
+                console.log(ai)
+                var getusermsg = {
 
-          senderid: this.user,
-          recid: this.curruser
+                  senderid: this.user,
+                  recid: this.curruser
 
+                }
+
+
+                this.usermsgservice.getmessage(getusermsg)
+                  .subscribe(response => {
+                    console.log(response)
+                    this.messages = response
+                    this.socket.emit('my message', this.curruser);
+                    this.message = ''
+
+                  })
+              }
+              ai = ai + 1
+              repeat();
+            }, 500);
+          }
+
+          repeat()
+
+        }
+        else {
+          alert('No chats yet!')
         }
 
 
-        this.usermsgservice.getmessage(getusermsg)
-          .subscribe(response => {
-            console.log(response)
-            this.messages = response
-            this.socket.emit('my message', this.curruser);
-            this.message=''
-
-          })
       }
-      ai = ai + 1
-      repeat();
-    }, 500);
-  }
+      else if (this.activeroom === "group" && this.message.length > 0) {
+        let ai = 0
+        this.data2 = {
+          senderid: this.user,
+          deskspaceid: this.currentroom.id,
+          sendername: "usama",
+          message: this.message
+        }
 
-  repeat()
+        const repeat = () => {
 
-}
-else{
-  alert('No chats yet!')
-}
+          setTimeout(() => {
+            if (ai === 2) return
+            else if (ai === 0) {
 
-
-  }
-  else if(this.activeroom === "group"&&this.message.length>0) {
-    let ai = 0
-    this.data2 = {
-      senderid: this.user,
-      deskspaceid: this.currentroom.id,
-      sendername: "usama",
-      message: this.message
-    }
-
-    const repeat = () => {
-
-      setTimeout(() => {
-        if (ai === 2) return
-        else if (ai === 0) {
-
-          console.log(this.data2)
-          this.creategroupmsgservice.createuser(this.data2)
-            .subscribe(hero => {/*
+              console.log(this.data2)
+              this.creategroupmsgservice.createuser(this.data2)
+                .subscribe(hero => {/*
 var a: any = localStorage.getItem("myid")
 this.socketservice.sendmessageto(this.curruser)
 */
 
 
-            })
+                })
 
+            }
+            else if (ai === 1) {
+              this.message = ''
+
+              var getusermsg = {
+
+                deskid: this.currentroom.id,
+
+              }
+              this.groupmsgservice.getgroupmsg(getusermsg)
+                .subscribe(response => {
+                  console.log(response)
+
+                  this.messages = response
+
+
+                  this.socket.emit('newgroupmsg', this.currentroom.id);
+
+
+                })
+            }
+            ai = ai + 1
+            repeat();
+          }, 500);
         }
-        else if (ai === 1) {
-          this.message=''
 
-          var getusermsg = {
+        repeat()
 
-            deskid: this.currentroom.id,
-
-          }
-          this.groupmsgservice.getgroupmsg(getusermsg)
-            .subscribe(response => {
-              console.log(response)
-
-              this.messages = response
+      }
+      else {
+        alert("type message")
+      }
 
 
-              this.socket.emit('newgroupmsg', this.currentroom.id);
-         
-
-            })
-        }
-        ai = ai + 1
-        repeat();
-      }, 500);
     }
-
-    repeat()
-
-  }
-  else{
-    alert("type message")
-  }
-
-
-}
   }
 
   ngOnDestroy() {
@@ -1029,8 +1059,8 @@ this.socketservice.sendmessageto(this.curruser)
   }
 
 
-  callername:any
-  callprefix:any
+  callername: any
+  callprefix: any
 
 
   onLoadedMetadata(event: Event) {
@@ -1051,6 +1081,61 @@ this.socketservice.sendmessageto(this.curruser)
     else {
       this.login = 1
     }
+    
+    this.socket.on('mutethis', (data: string) => {
+
+      
+      if(data===localStorage.getItem('myid')){
+        this.mute=true
+
+      }})
+
+      
+    this.socket.on('unmutethis', (data: string) => {
+
+      
+      if(data===localStorage.getItem('myid')){
+        this.mute=false
+
+      }})
+
+
+      
+    this.socket.on('vmutethis', (data: string) => {
+
+      
+      if(data===localStorage.getItem('myid')){
+        this.calltype='audio'
+
+      }})
+
+      
+    this.socket.on('vunmutethis', (data: string) => {
+
+      
+      if(data===localStorage.getItem('myid')){
+        this.calltype='video'
+
+      }})
+
+    this.socket.on('cancelcall', (data: string) => {
+
+      
+if(data===localStorage.getItem('myid')){
+  console.log('call dropped')
+
+  this.calling = 'calling2'
+  this.peer.destroy()
+  this.peer = null
+  this.videos = []
+  this.callvideo = "callvideo2"
+
+
+
+}
+
+
+    })
     this.socket.on('my broadcast', (data: string) => {
       console.log(data.toString())
       var c: any = a?.search(data)
@@ -1075,15 +1160,15 @@ this.socketservice.sendmessageto(this.curruser)
       }
     });
     this.socket.on('calling', (data: string, peer: string, g: any) => {
-      var ax =g.split("cfgv")
-      var user=ax[0]
+      var ax = g.split("cfgv")
+      var user = ax[0]
       console.log(ax[1])
-      if(ax[1]==='video'){
-      this.calltype='video'
+      if (ax[1] === 'video') {
+        this.calltype = 'video'
 
       }
-      else{
-        this.calltype='audio'
+      else {
+        this.calltype = 'audio'
       }
       var c: any = a?.search(data)
       if (c >= 0) {
@@ -1091,14 +1176,14 @@ this.socketservice.sendmessageto(this.curruser)
 
         this.calling = "calling"
         console.log("from" + user)
-        this.posts.forEach((val:any) => {
-          
-          if(val._id===user){
-            this.callername=val.name
-            this.callprefix=val.name.substring(0,2).toUpperCase()
-            
+        this.posts.forEach((val: any) => {
+
+          if (val._id === user) {
+            this.callername = val.name
+            this.callprefix = val.name.substring(0, 2).toUpperCase()
+
           }
-          
+
         });
         this.tpear = JSON.parse(peer)
         this.from = user
@@ -1153,7 +1238,7 @@ this.socketservice.sendmessageto(this.curruser)
 
 
 
-    navigator.mediaDevices.getUserMedia({
+     navigator.mediaDevices.getUserMedia({
       audio: true,
       video: true,
     })
@@ -1207,7 +1292,7 @@ this.socketservice.sendmessageto(this.curruser)
       name: "",
       participants: 'No Chats yet!'
     }
-    this.oo=1
+    this.oo = 1
     this.activeroom = "chat"
     this.currentroom = temproom
     this.getgroupservice.getgroups(groupmatch)
@@ -1219,53 +1304,53 @@ this.socketservice.sendmessageto(this.curruser)
     this.socketservice.setupSocketConnection();
     this.service.getPosts()
       .subscribe(response => {
-        this.postsx=response
+        this.postsx = response
         this.posts2 = response;
-        this.posts2.forEach((item:any) => {
-          if(item._id===this.user){
-this.invitelists=item.invite
+        this.posts2.forEach((item: any) => {
+          if (item._id === this.user) {
+            this.invitelists = item.invite
 
-this.invitelists.forEach((val,index)=>{
-  var i=0;
-  for(var j=index+1;j<this.invitelists.length;j++){
-    if(this.invitelists[j].id===this.invitelists[index].id){
-      i=1
-    }
-
-
-  }
-  if(i===0){
-    console.log(this.invitelists[index].id)
-    this.invitelists2.push(val)
-
-  }
+            this.invitelists.forEach((val, index) => {
+              var i = 0;
+              for (var j = index + 1; j < this.invitelists.length; j++) {
+                if (this.invitelists[j].id === this.invitelists[index].id) {
+                  i = 1
+                }
 
 
+              }
+              if (i === 0) {
+                console.log(this.invitelists[index].id)
+                this.invitelists2.push(val)
 
-})
+              }
+
+
+
+            })
 
 
             console.log(item.allowed)
 
-            item.allowed.forEach((elem:any) => {
+            item.allowed.forEach((elem: any) => {
 
-              this.posts2.forEach((element:any) => {
-                if(element._id===elem.id){
+              this.posts2.forEach((element: any) => {
+                if (element._id === elem.id) {
                   this.userlists.push(element)
                 }
-                
+
               });
 
 
-              
+
             });
-            this.posts=this.userlists
+            this.posts = this.userlists
             console.log(this.posts)
-            if(this.userlists.length>=1){
-              this.oo=0
+            if (this.userlists.length >= 1) {
+              this.oo = 0
             }
           }
-          
+
         });
 
         this.currentroom = {
@@ -1283,7 +1368,7 @@ this.invitelists.forEach((val,index)=>{
 
       })
   }
-  sendinvite(){
+  sendinvite() {
 
 
 
@@ -1293,34 +1378,33 @@ this.invitelists.forEach((val,index)=>{
 
     console.log(this.invitelists)
 
-    var temp={
-      id:this.inviteid,
-      name:this.invitename,
-      addid:this.user,
+    var temp = {
+      id: this.inviteid,
+      name: this.invitename,
+      addid: this.user,
     }
-    
+
     this.inviteservice.accept(temp).
-    subscribe(res=>
-      {
+      subscribe(res => {
         console.log(res)
       })
-      
-      this.deskus='deskx2'
-      alert('Invitaion sent')
+
+    this.deskus = 'deskx2'
+    alert('Invitaion sent')
   }
-  invitename:any
-  inviteid:any
-  setinvite(name:any,id:any){
+  invitename: any
+  inviteid: any
+  setinvite(name: any, id: any) {
     console.log(name)
     console.log(id)
-    this.invitename=localStorage.getItem('name')
-    this.inviteid=id
+    this.invitename = localStorage.getItem('name')
+    this.inviteid = id
   }
-  accept(id:any){
-  
+  accept(id: any) {
 
-    var ai=0
-    
+
+    var ai = 0
+
     const repeat = () => {
 
       setTimeout(() => {
@@ -1331,25 +1415,23 @@ this.invitelists.forEach((val,index)=>{
         else if (ai === 0) {
 
           console.log(id)
-          var temp={
-            id:this.user,
-            allowed:id,
+          var temp = {
+            id: this.user,
+            allowed: id,
           }
           this.allowedservice.accept(temp).
-          subscribe(res=>
-            {
+            subscribe(res => {
               console.log(res)
             })
-      
+
         }
         else if (ai === 1) {
-          var temp2={
-            id:this.user,
-            deleteid:id,
+          var temp2 = {
+            id: this.user,
+            deleteid: id,
           }
           this.deleteinv.accept(temp2)
-          .subscribe(res=>
-            {
+            .subscribe(res => {
               console.log(res)
             })
 
@@ -1370,12 +1452,12 @@ this.invitelists.forEach((val,index)=>{
 
   }
 
-  deleteinvite(id:any){
+  deleteinvite(id: any) {
 
 
 
-    var ai=0
-    
+    var ai = 0
+
     const repeat = () => {
 
       setTimeout(() => {
@@ -1386,17 +1468,16 @@ this.invitelists.forEach((val,index)=>{
         else if (ai === 0) {
 
 
-          var temp2={
-            id:this.user,
-            deleteid:id,
+          var temp2 = {
+            id: this.user,
+            deleteid: id,
           }
           this.deleteinv.accept(temp2)
-          .subscribe(res=>
-            {
+            .subscribe(res => {
               console.log(res)
             })
-      
-      
+
+
         }
         else if (ai === 1) {
 
@@ -1412,31 +1493,67 @@ this.invitelists.forEach((val,index)=>{
 
 
   }
-  oo:any=1
+  oo: any = 1
   userlists: Array<{ username: any }> = [];
-  
-  invitelists2: Array<{ name: any,id:any }> = [];
-  invitelists: Array<{ name: any,id:any }> = [];
-  posts2:any
-  postsx:any
+
+  invitelists2: Array<{ name: any, id: any }> = [];
+  invitelists: Array<{ name: any, id: any }> = [];
+  posts2: any
+  postsx: any
   searchtxt: String = ""
   i: any = 0
   side: String = "side"
+  mystream:any
   sidechange() {
 
-      this.side = "side side2"
-      this.i = 1
-    
+    this.side = "side side2"
+    this.i = 1
+
   }
+  mute:any=false
+  mic:any=false
+
+
+  vmute:any=false
+
+audiomute(){
+  
+  if(this.mic){
+    this.mic=false
+    
+    this.socket.emit('unmute',this.from)
+  }
+  else{
+    
+  this.socket.emit('mute',this.from)
+    this.mic=true
+  }
+}
+videomute(){
+  if(this.vmute){
+    this.vmute=false
+    
+    this.socket.emit('vunmute',this.from)
+  }
+  else{
+    
+  this.socket.emit('vmute',this.from)
+    this.vmute=true
+  }
+}
+
   closeconm() {
-this.calling='calling2'
+    this.socket.emit('closecall',this.from)
+
+
+    this.calling = 'calling2'
     this.peer.destroy()
     this.peer = null
     this.videos = []
     this.callvideo = "callvideo2"
+this.mute=false
 
-
-    navigator.mediaDevices.getUserMedia({
+     navigator.mediaDevices.getUserMedia({
       audio: true,
       video: true,
     })
@@ -1484,7 +1601,7 @@ this.calling='calling2'
   }
   connect() {
 
-    navigator.mediaDevices.getUserMedia({
+     navigator.mediaDevices.getUserMedia({
       audio: true,
       video: true,
     })
@@ -1559,12 +1676,12 @@ this.calling='calling2'
   valuechange2(val: any) {
     this.tpear = val.target.value
   }
-searchtxt2:any=''
+  searchtxt2: any = ''
 
   searchvalchange(val: any) {
     this.searchtxt = val.target.value
   }
-  
+
   searchvalchange2(val: any) {
     this.searchtxt2 = val.target.value
   }
