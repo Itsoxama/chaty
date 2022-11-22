@@ -536,15 +536,16 @@ cursor: pointer;
 .callcirclex{
   margin-bottom: 40px;
   cursor: pointer;
-    width: 40px;
-    height: 40px;
+    width: 160px;
+    height: 60px;
     border-radius: 40px;
     display: flex;
-    
+    padding-left: 15px;
+    padding-right: 15px;
     align-items: center;
     
     background: linear-gradient(90deg, rgb(240, 58, 101) 1%, rgb(226, 15, 15) 100%);
-    justify-content: center;
+    justify-content: space-between;
     
     }
 .calling>div{
@@ -1325,11 +1326,16 @@ background: linear-gradient(90deg, rgba(6,182,232,1) 1%, rgba(23,153,244,1) 59%,
   position: absolute;
 
 }
+.oppe{
+  height: 0px;
+}
 .opp{
   opacity: 0!important;
 }
 @media screen and (max-width: 780px) {
-
+.calling{
+  width: 90%!important;
+}
   .side2{
     
     left: 0px!important;
