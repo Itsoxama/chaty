@@ -1,18 +1,4 @@
-import { inviteservive } from './services/invite.service';
-import { deleteuser } from './services/deleteuser.service';
-import { HttpClient } from '@angular/common/http';
-import { creategroupmsg } from './services/creategroupmsg.service';
-import { groupmsg } from './services/groupmsg.service';
-import { getusergroup } from './services/getusergroup.service';
-import { createdesk } from './services/createdesk.service';
-import { createuser } from './services/createuser.service';
-import { authlogin } from './services/authlogin.service';
-import { finalize, isObservable, observable } from 'rxjs';
-import { SocketioService } from './socketio.service';
-import { SendService } from './services/send.service';
-import { Component, OnInit } from '@angular/core';
-import { PostService } from './services/post.service';
-import { ActivatedRoute } from "@angular/router";
+
 
 import { SimplePeer } from "simple-peer"
 import { Instance, SignalData } from 'simple-peer';
